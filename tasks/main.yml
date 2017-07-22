@@ -2,7 +2,8 @@
 - block:
     - include: dependencies.yml
     - include: mysql.yml
-    - include: nginx.yml
+    - include: "{{ item }}.yml"
+      with_items: "{{ rundeck_webserver }}"
     - include: install.yml
     - include: setup.yml
     - include: config.yml

@@ -5,11 +5,10 @@
     chdir: /var/rundeck/
     creates: "/var/rundeck/projects/{{item}}"
   environment:
-    RUNDECK_URL: "{{framework_server_url}}"
-    RUNDECK_USER: "{{framework_server_username}}"
-    RUNDECK_PASS: "{{rundeck_admin_password}}"
+    RUNDECK_URL: "{{ framework_server_url }}"
+    RUNDECK_USER: "{{ framework_server_username }}"
+    RUNDECK_PASS: "{{ rundeck_admin_password }}"
   with_items: "{{ rd_create_projects }}"
-  ignore_errors: true
 
 - name: Create acl for projects
   template:

@@ -1,22 +1,39 @@
 ---
-- name: modify repository
+- name: Debian | get repository
   apt_repository:
     repo: 'deb http://dl.bintray.com/rundeck/rundeck-deb /'
     state: present
   when: ansible_os_family == 'Debian'
 
-- name: install in Debian family
+- name: Debian | install rundeck
   apt:
     name: "rundeck={{ rundeck_version }}*"
     state: present
     force: yes
+  notify: restart rundeckd
   when: ansible_os_family == 'Debian'
 
-- name: install in EL family
+# Redhat based OS
+- name: Redhat | get repository
+  package:
+    name: http://repo.rundeck.org/latest.rpm
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: Redhat | install rundeck
   package:
     name: "rundeck-{{ rundeck_version }}*"
     state: present
+  become: yes
+  notify: restart rundeckd
   when: ansible_os_family == 'RedHat'
+
+# - name: install in EL family
+#   package:
+#     name: "rundeck-{{ rundeck_version }}*"
+#     state: present
+#   when: ansible_os_family == 'RedHat'
 
 - name: Install rundeck-cli
   package:
