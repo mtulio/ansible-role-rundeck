@@ -1,7 +1,6 @@
-# README.md
-# Ansible Role: mats116.rundeck
+# Ansible role Rundeck
 
-An Ansible role that configure [Rundeck](http://rundeck.org/) on **Ubuntu 14.04 LTS**
+An Ansible role that configure [Rundeck](http://rundeck.org/)
 
 ## Requirements
 

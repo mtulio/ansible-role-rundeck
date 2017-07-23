@@ -1,0 +1,16 @@
+---
+- set_fact:
+    python_db_package: MySQL-python
+  when: ansible_os_family == 'RedHat'
+
+- set_fact:
+    python_db_package: python-mysqldb
+  when: ansible_os_family == 'Debian'
+
+- name: install dependencies
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ python_db_package }}"
+    - java

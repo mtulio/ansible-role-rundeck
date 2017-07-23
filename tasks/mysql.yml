@@ -1,8 +1,4 @@
-- name: install python-mysqldb
-  apt:
-    name: python-mysqldb
-    state: latest
-    force: yes
+---
 
 - name: modify ~/.my.cnf
   template:
